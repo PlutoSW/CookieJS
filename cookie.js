@@ -27,12 +27,8 @@ class Cookie {
                     Object.defineProperty(this, key, {
                         get() {
                             this.value = this.get(key).value;
-                            if (this.value || this.value !== "null") {
-                                this.key = key;
-                                return this;
-                            } else {
-                                return null;
-                            }
+                            this.key = key;
+                            return this;
                         }
                     });
                     this.cookies.push({
@@ -50,7 +46,12 @@ class Cookie {
         } else {
             result = this.cookies.find(e => e.key === key);
         }
-        return result;
+        if (result) {
+            this.value = result.value, this.key = result.key
+            return this;
+        } else {
+            return null;
+        }
     }
     remove() {
         this.set(this.key, null, -1);
@@ -60,10 +61,11 @@ class Cookie {
             offset = (typeof time == 'undefined') ? (1000 * 60 * 60 * 24) : (time * 1000),
             expires_at = new Date(today.getTime() + offset);
         document.cookie = key + "=" + value + ";" + expires_at + ";path=/";
-        if (!this.get("abc")) {
+        if (!this[key]) {
             Object.defineProperty(this, key, {
                 get() {
                     this.key = key;
+                    this.value = this.get(key).value;
                     return this;
                 }
             });
@@ -72,7 +74,7 @@ class Cookie {
                 value: value
             });
         } else {
-            this.get(key).value = value;
+            this.cookies.find(e => e.key === key).value = value;
         }
     }
 }
