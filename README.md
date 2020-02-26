@@ -28,7 +28,7 @@ cookie.username.value
 #### Remove Cookie
 
 ```javascript
-cookie.remove();
+cookie.username.remove();
 ```
 
 #### Search Cookie
