@@ -1,5 +1,5 @@
 # CookieJS
-Cookie Library in Javascript
+Javascript Cookie Library
 
 ## Usage
 
