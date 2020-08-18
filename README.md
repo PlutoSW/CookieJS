@@ -3,7 +3,7 @@ Javascript Cookie Library
 
 ## Usage
 
-#### Initalize
+#### Initialize
 ```javascript
 var cookie = new Cookie();
 ```
